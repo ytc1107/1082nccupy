@@ -1,0 +1,39 @@
+import time
+
+name = input("What is your name? ")
+print("Hello,", name, ". Welcome to hangman!")
+time.sleep(1)
+
+word = "python"
+guesses = ''
+turns = 10
+
+print("Start guessing..., the answer contains", len(word), "characters...")
+time.sleep(0.5)
+
+while turns > 0:         
+    failed = 0
+
+    for char in word:
+        if char in guesses:    
+            print(char, end="")
+        else:
+            print("_", end="")    
+            failed += 1    
+
+    if failed == 0:
+        print()
+        print("\nYou won!!!") 
+        break              
+
+    print()
+    guess = input("Guess ONE character:")
+    guesses += guess[0]
+    if guess not in word:  
+        turns -= 1        
+        print("Wrong!")
+        print("You have", turns, 'more guesses') 
+
+    if turns == 0:           
+        print("\nYou Lose...")
+
